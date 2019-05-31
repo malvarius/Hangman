@@ -13,34 +13,53 @@
 
     <div class="header">
         <div class="letters">
+            <span id="userGuesses">
+            </span>
             <span id="rep">
             </span>
-            <p id="guesses"></p>
+            <span id="lettersGuessed"></span>
+            <span id="guesses"></span>
+            
         </div>
     </div>
     <script type="text/javascript">
         var hang = {
             onStart: document.onkeyup = function (c) {
-
+                //game starts on spacebar(word is generated) 
                 if (c.key===" "){
+                // random word from wordList chosen
                 var wordList = ["orgrimmar", "stormwind", "darnassus", "thunderbluff", "ironforge", "undercity"]
                 var rand = wordList[Math.floor(Math.random() * wordList.length)];
+            //    split random chosen word into array with each letter being an element 
                 var arrayFinal = rand.split("",wordLength);
                 var wordLength = rand.length;
+                // guessed letters array for stat
+                var glArray = [];
+                // start counter for turns left
                 var counter = 0;
+                // generating blank spaces to go under letters
                 var space = "_ ";
                 var blanks =space.repeat(wordLength);
                     document.getElementById("rep").innerHTML = blanks;
+                    document.getElementById("userGuesses").innerHTML = arrayFinal;
 
-
+                    //on key press guess is generated and guesses left determined then displayed
                     var listen = document.onkeyup = function (e) {
                     var keyPress = e.key;
                     counter=counter+1;
                     var guessLeft = wordLength+3-counter;
+                    // pushing guessed letters stat to array
+                    glArray.push(e.key);
+                    document.getElementById("lettersGuessed").innerHTML = "Guessed Letters: "+glArray+" ";
+
+                    // displaying number of guesses left
                     document.getElementById("guesses").innerHTML = "Guesses left: "+guessLeft;
+                    //check to see if user guessed an correct letter
                     if (arrayFinal.includes(e.key)){
                         alert("thats one correct")
+                        
                     }
+                    // looks to see if guesses left is = 0 will replace add && userguess!==array
                     if (guessLeft<=0){
                         document.getElementById("guesses").innerHTML = "GAME OVER ALLIANCE LOSES";
                     }

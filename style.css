@@ -24,3 +24,21 @@ body{
     top: 30%;
     left: 30%;
 }
+#lettersGuessed{
+    color: white;
+    font-size: 24px;
+    position: absolute;
+    top: 40%;
+    left: 30%;
+}
+#rep{
+    color: white;
+    font-size: 36px;
+}
+#userGuesses{
+    color: white;
+    font-size: 44px;
+    position: absolute;
+    top: 0%;
+    left: 15%;
+}
