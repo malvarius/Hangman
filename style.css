@@ -2,7 +2,12 @@ body{
     background-image: url('https://www.gamecrate.com/sites/default/files/field/image/Classic-Wow-1.jpg');
     font-family: 'Roboto',monospace;
 }
-
+#startRep{
+    color: white;
+    font-size: 36px;
+    position: absolute;
+    left : 25%;
+}
 #rep{
     color: white;
     font-size: 36px;
