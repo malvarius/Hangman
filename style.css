@@ -8,10 +8,6 @@ body{
     position: absolute;
     left : 25%;
 }
-#rep{
-    color: white;
-    font-size: 36px;
-}
 .letters{
     position: absolute;
     top:25%;
@@ -41,7 +37,8 @@ body{
     font-size: 36px;
     position: absolute;
     top: 15%;
-    left: 35%;
+    left: 37.5%;
+    text-align: center;
 }
 #userGuesses{
     color: white;
