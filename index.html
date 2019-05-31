@@ -33,7 +33,7 @@
                 var rand = wordList[Math.floor(Math.random() * wordList.length)];
             //    split random chosen word into array with each letter being an element 
                 var arrayFinal = rand.split("",wordLength);
-                // rejoins letters in array seperated by space
+                // rejoins letters in string seperated by space
                 var arrayFinalJoin = arrayFinal.join(" ");
                 var wordLength = rand.length;
                 // guessed letters array for stat
@@ -41,10 +41,12 @@
                 // start counter for turns left
                 var counter = 0;
                 // generating blank spaces to go under letters
-                var space = "_ ";
-                var blanks =space.repeat(wordLength);
-                    document.getElementById("rep").innerHTML = blanks;
-                    document.getElementById("userGuesses").innerHTML = arrayFinalJoin;
+                var space = "_";
+                var blankArray = [];
+                //for loop to push blanks into blanks array making "letter" spaces to be filled later
+                for (var i=0;i<wordLength; i++){
+                    blankArray.push(space);
+                }
 
                     //on key press guess is generated and guesses left determined then displayed
                     var listen = document.onkeyup = function (e) {
@@ -60,7 +62,7 @@
                         guessLeft = guessLeft+1;
                         counter = counter-1;
                     }
-                    // pushing guessed letters stat to array
+                    // pushing guessed letters stat to array of guessed letters
                     glArray.push(keyPress);
 
                     //  display letters guessed
@@ -69,11 +71,19 @@
                    
                     // displaying number of guesses left
                     document.getElementById("guesses").innerHTML = "Guesses left: "+guessLeft;
-                    //check to see if user guessed an correct letter
+                    //check to see if user guessed an correct letter works for 1 letter replacing blanks with letters
                     if (arrayFinal.includes(keyPress)){
-                        alert("thats one correct")
+                        for(var j=0; j<arrayFinal.length;j++){
+                            if(keyPress===arrayFinal[j]){
+                        blankArray.splice(j,1, keyPress)
+                    }
+                    }
                         
                     }
+                    //joins blankArray back together and displays it, displaying final word also for testing
+                    var blanks = blankArray.join(" ")
+                    document.getElementById("rep").innerHTML = blanks;
+
                     // looks to see if guesses left is = 0 will replace add && userguess!==array
                     if (guessLeft<=0){
                         document.getElementById("guesses").innerHTML = "GAME OVER ALLIANCE LOSES";
@@ -81,7 +91,7 @@
                     console.log(rand);
                     console.log(keyPress);
                     console.log(guessLeft);
-                    console.log(arrayFinal);
+                    console.log(blankArray);
                     console.log(glArray);
                 }
             }
