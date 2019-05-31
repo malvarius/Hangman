@@ -13,8 +13,9 @@
 
     <div class="header">
         <div class="letters">
-            <span id="repeat">
+            <span id="rep">
             </span>
+            <p id="guesses"></p>
         </div>
     </div>
     <script type="text/javascript">
@@ -24,16 +25,29 @@
                 if (c.key===" "){
                 var wordList = ["orgrimmar", "stormwind", "darnassus", "thunderbluff", "ironforge", "undercity"]
                 var rand = wordList[Math.floor(Math.random() * wordList.length)];
+                var arrayFinal = rand.split("",wordLength);
                 var wordLength = rand.length;
+                var counter = 0;
                 var space = "_ ";
-                    document.getElementById("repeat").innerHTML = space*wordLength;
+                var blanks =space.repeat(wordLength);
+                    document.getElementById("rep").innerHTML = blanks;
+
 
                     var listen = document.onkeyup = function (e) {
                     var keyPress = e.key;
-                    
+                    counter=counter+1;
+                    var guessLeft = wordLength+3-counter;
+                    document.getElementById("guesses").innerHTML = "Guesses left: "+guessLeft;
+                    if (arrayFinal.includes(e.key)){
+                        alert("thats one correct")
+                    }
+                    if (guessLeft<=0){
+                        document.getElementById("guesses").innerHTML = "GAME OVER ALLIANCE LOSES";
+                    }
                     console.log(rand);
                     console.log(e.key);
-                    console.log(wordLength);
+                    console.log(guessLeft);
+                    console.log(arrayFinal);
                 }
             }
         },
