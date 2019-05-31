@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>WarCraft Cities</title>
+</head>
+
+<body>
+
+    <div class="header">
+        <div class="letters">
+            <span id="repeat">
+            </span>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var hang = {
+            onStart: document.onclick = function (c) {
+                var wordList = ["orgrimmar", "stormwind", "darnassus", "thunderbluff", "ironforge", "undercity"]
+                var rand = wordList[Math.floor(Math.random() * wordList.length)];
+                    var listen = document.onkeyup = function (e) {
+                    var keyPress = e.key;
+                    var wordLength = rand.length;
+                    console.log(rand);
+                    console.log(e.key);
+                    console.log(wordLength);
+                }
+            },
+        }
+    </script>
+
+</body>
+
+</html>
