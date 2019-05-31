@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <title>WarCraft Cities</title>
 </head>
@@ -32,6 +33,8 @@
                 var rand = wordList[Math.floor(Math.random() * wordList.length)];
             //    split random chosen word into array with each letter being an element 
                 var arrayFinal = rand.split("",wordLength);
+                // rejoins letters in array seperated by space
+                var arrayFinalJoin = arrayFinal.join(" ");
                 var wordLength = rand.length;
                 // guessed letters array for stat
                 var glArray = [];
@@ -41,21 +44,33 @@
                 var space = "_ ";
                 var blanks =space.repeat(wordLength);
                     document.getElementById("rep").innerHTML = blanks;
-                    document.getElementById("userGuesses").innerHTML = arrayFinal;
+                    document.getElementById("userGuesses").innerHTML = arrayFinalJoin;
 
                     //on key press guess is generated and guesses left determined then displayed
                     var listen = document.onkeyup = function (e) {
                     var keyPress = e.key;
                     counter=counter+1;
                     var guessLeft = wordLength+3-counter;
-                    // pushing guessed letters stat to array
-                    glArray.push(e.key);
-                    document.getElementById("lettersGuessed").innerHTML = "Guessed Letters: "+glArray+" ";
 
+                    
+
+                    // checking to see if user already guessed it if so take count down 1 and warn user
+                    if (glArray.includes(keyPress)){
+                        alert("The horde will punish you for guessing a letter twice!");
+                        guessLeft = guessLeft+1;
+                        counter = counter-1;
+                    }
+                    // pushing guessed letters stat to array
+                    glArray.push(keyPress);
+
+                    //  display letters guessed
+                    var glJoin = glArray.join(" ").toUpperCase();
+                    document.getElementById("lettersGuessed").innerHTML = "Guessed Letters: "+glJoin+" ";
+                   
                     // displaying number of guesses left
                     document.getElementById("guesses").innerHTML = "Guesses left: "+guessLeft;
                     //check to see if user guessed an correct letter
-                    if (arrayFinal.includes(e.key)){
+                    if (arrayFinal.includes(keyPress)){
                         alert("thats one correct")
                         
                     }
@@ -64,9 +79,10 @@
                         document.getElementById("guesses").innerHTML = "GAME OVER ALLIANCE LOSES";
                     }
                     console.log(rand);
-                    console.log(e.key);
+                    console.log(keyPress);
                     console.log(guessLeft);
                     console.log(arrayFinal);
+                    console.log(glArray);
                 }
             }
         },
