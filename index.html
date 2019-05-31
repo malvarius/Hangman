@@ -71,7 +71,10 @@
                    
                     // displaying number of guesses left
                     document.getElementById("guesses").innerHTML = "Guesses left: "+guessLeft;
-                    //check to see if user guessed an correct letter works for 1 letter replacing blanks with letters
+                    //check to see if user guessed an correct letter if so goes to for loop
+                    // which checks each element in array compared to master array (arrayFinal)
+                    // if the element at that index == keyPress it replaces the corresponding element
+                    // in the blank array with keyPress
                     if (arrayFinal.includes(keyPress)){
                         for(var j=0; j<arrayFinal.length;j++){
                             if(keyPress===arrayFinal[j]){
@@ -80,14 +83,24 @@
                     }
                         
                     }
-                    //joins blankArray back together and displays it, displaying final word also for testing
+                    //joins blankArray back together and displays it, displaying
+                    //  final word also for testing, also used to check win condition
                     var blanks = blankArray.join(" ")
                     document.getElementById("rep").innerHTML = blanks;
 
+                    
+
+
                     // looks to see if guesses left is = 0 will replace add && userguess!==array
-                    if (guessLeft<=0){
+                    //looks to see if blankArray == arrayFinal ( checks array that is being 
+                    // filled by user guesses is equal to the original guessed word as an array )
+                    if (blanks==arrayFinalJoin){
+                        alert("You win for the horde!")
+                    }
+                    if ((guessLeft<=0) && (blankArray!==arrayFinal)){
                         document.getElementById("guesses").innerHTML = "GAME OVER ALLIANCE LOSES";
                     }
+
                     console.log(rand);
                     console.log(keyPress);
                     console.log(guessLeft);
