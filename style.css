@@ -1,0 +1,16 @@
+body{
+    background-image: url('https://www.gamecrate.com/sites/default/files/field/image/Classic-Wow-1.jpg');
+    
+}
+
+#repeat{
+    color: white;
+}
+.letters{
+    position: absolute;
+    top:25%;
+    left: 35%;
+    height: 15%;
+    width: 30%;
+    background-color: black;
+}
