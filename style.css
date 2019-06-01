@@ -16,6 +16,10 @@ body{
     width: 50%;
     background-color: black;
     text-align: center;
+    border-color: red;
+    border-radius: 10px;
+    border-width: 5px;
+    border-style: groove;
     
 }
 #guesses{

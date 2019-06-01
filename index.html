@@ -56,7 +56,7 @@
                 
 
                     //on key press guess is generated and guesses left determined then displayed
-                    var listen = document.onkeyup = function (e) {
+                    document.onkeyup = function (e) {
                     var keyPress = e.key;
                     counter=counter+1;
                     var guessLeft = wordLength+3-counter;
