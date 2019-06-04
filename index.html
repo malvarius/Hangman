@@ -7,11 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    
     <title>WarCraft Cities</title>
 </head>
 
 <body>
-
+    <audio id="wowBite" src="./wowbyte.mp3"></audio>
     <div class="header">
         <div class="letters">
             <span id="userGuesses">
@@ -61,7 +62,7 @@
                     document.onkeyup = function (e) {
                     var keyPress = e.key;
                     counter=counter+1;
-                    var guessLeft = wordLength+3-counter;
+                    var guessLeft = wordLength+5-counter;
 
                     
 
@@ -110,9 +111,11 @@
                        hang.game();
                         document.getElementById("winner").innerHTML = "Wins: "+winner;
                         alert("You win for the horde!");
-                        alert("guess another letter to begin next game!");
-                        var audio = new Audio('audio_file.mp3');
-                        audio.play();
+                        var x = document.getElementById("wowBite"); 
+                        x.play();
+                        document.getElementById("guesses").innerHTML = "Guess another letter to being next game!";
+                        
+                        
                     }
                     if ((guessLeft<=0) && (blankArray!==arrayFinal)){
                         document.getElementById("guesses").innerHTML = "GAME OVER ALLIANCE LOSES";
