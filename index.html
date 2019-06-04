@@ -27,7 +27,7 @@
     </div>
     <script type="text/javascript">
         winner = 0;
-         
+        
         var hang = {
            startup: document.getElementById("startRep").innerHTML = "Press SpaceBar to BEGIN",
             game: document.onkeyup = function (c) {
@@ -111,6 +111,8 @@
                         document.getElementById("winner").innerHTML = "Wins: "+winner;
                         alert("You win for the horde!");
                         alert("guess another letter to begin next game!");
+                        var audio = new Audio('audio_file.mp3');
+                        audio.play();
                     }
                     if ((guessLeft<=0) && (blankArray!==arrayFinal)){
                         document.getElementById("guesses").innerHTML = "GAME OVER ALLIANCE LOSES";
@@ -124,7 +126,12 @@
                 }
             }
         }
+       document.onkeyup= function(s){
+        
+        if(s.key===" "){
         hang.game();
+        }
+       }
     </script>
 
 </body>
