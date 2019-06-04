@@ -21,15 +21,17 @@
             </span>
             <span id="lettersGuessed"></span>
             <span id="guesses"></span>
+            <span id="winner"></span>
             
         </div>
     </div>
     <script type="text/javascript">
+        winner = 0;
+         
         var hang = {
            startup: document.getElementById("startRep").innerHTML = "Press SpaceBar to BEGIN",
             game: document.onkeyup = function (c) {
                 //game starts on spacebar(word is generated) 
-                if (c.key===" "){
                 // random word from wordList chosen
                 var wordList = ["orgrimmar", "stormwind", "darnassus", "thunderbluff", "ironforge", "undercity"]
                 var rand = wordList[Math.floor(Math.random() * wordList.length)];
@@ -78,6 +80,7 @@
                    
                     // displaying number of guesses left
                     document.getElementById("guesses").innerHTML = "Guesses left: "+guessLeft;
+                    document.getElementById("winner").innerHTML = "Wins: "+winner;
                     //check to see if user guessed an correct letter if so goes to for loop
                     // which checks each element in array compared to master array (arrayFinal)
                     // if the element at that index == keyPress it replaces the corresponding element
@@ -102,7 +105,12 @@
                     //looks to see if blankArray == arrayFinal ( checks array that is being 
                     // filled by user guesses is equal to the original guessed word as an array )
                     if (blanks==arrayFinalJoin){
-                        alert("You win for the horde!")
+                        winner=winner+1;
+                        counter=0;
+                       hang.game();
+                        document.getElementById("winner").innerHTML = "Wins: "+winner;
+                        alert("You win for the horde!");
+                        alert("guess another letter to begin next game!");
                     }
                     if ((guessLeft<=0) && (blankArray!==arrayFinal)){
                         document.getElementById("guesses").innerHTML = "GAME OVER ALLIANCE LOSES";
@@ -115,8 +123,8 @@
                     console.log(glArray);
                 }
             }
-        },
-    }
+        }
+        hang.game();
     </script>
 
 </body>
