@@ -13,6 +13,7 @@
 
 <body>
     <audio id="wowBite" src="./wowbyte.mp3"></audio>
+    <audio id="murlocSound" src="./murloc.mp3"></audio>
     <div class="header">
         <div class="letters">
             <span id="userGuesses">
@@ -23,11 +24,13 @@
             <span id="lettersGuessed"></span>
             <span id="guesses"></span>
             <span id="winner"></span>
+            <span id="losses"></span>
 
         </div>
     </div>
     <script type="text/javascript">
         winner = 0;
+        loser=0;
 
         var hang = {
             startup: document.getElementById("startRep").innerHTML = "Press SpaceBar to BEGIN",
@@ -79,9 +82,10 @@
                     var glJoin = glArray.join(" ").toUpperCase();
                     document.getElementById("lettersGuessed").innerHTML = "Guessed Letters: " + glJoin + " ";
 
-                    // displaying number of guesses left
+                    // displaying number of guesses left wins losses etc.
                     document.getElementById("guesses").innerHTML = "Guesses left: " + guessLeft;
                     document.getElementById("winner").innerHTML = "Wins: " + winner;
+                    document.getElementById("losses").innerHTML = "Losses: " + loser;
                     //check to see if user guessed an correct letter if so goes to for loop
                     // which checks each element in array compared to master array (arrayFinal)
                     // if the element at that index == keyPress it replaces the corresponding element
@@ -101,6 +105,7 @@
                     // looks to see if guesses left is = 0 will replace add && userguess!==array
                     //looks to see if blankArray == arrayFinal ( checks array that is being 
                     // filled by user guesses is equal to the original guessed word as an array )
+                    // added setTimeout to delay new game so that full word could be seen upon win
                     if (blanks == arrayFinalJoin) {
                         document.getElementById("rep").innerHTML = blanks;
                         setTimeout(winFunc, 200);
@@ -112,19 +117,27 @@
                         document.getElementById("winner").innerHTML = "Wins: " + winner;
                         var x = document.getElementById("wowBite");
                         x.play();
-                        document.getElementById("guesses").innerHTML = "Guess another letter to being next game!";
+                        document.getElementById("guesses").innerHTML = "Guess another letter to begin next game!";
                         }
                     }
+                    // similar to winner scenario but for losing
                     if ((guessLeft <= 0) && (blankArray !== arrayFinal)) {
                         document.getElementById("guesses").innerHTML = "GAME OVER ALLIANCE LOSES";
                         alert("game over alliance loses!");
-                        document.location.reload();
+                        counter = 0;
+                        loser++
+                        hang.game();
+                        document.getElementById("losses").innerHTML = "Losses: " + loser;
+                        var y = document.getElementById("murlocSound");
+                        y.play();
+                        document.getElementById("guesses").innerHTML = "Guess another letter to begin next game";
+                        
                     }
                     console.log(rand);
                     console.log(keyPress);
                     console.log(guessLeft);
                     console.log(blankArray);
-                    console.log(glArray);
+                    console.log(loser);
                 }
             }
         }
