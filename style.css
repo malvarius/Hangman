@@ -55,7 +55,7 @@ body{
     font-size: 36px;
     position: absolute;
     top: 15%;
-    left: 35%;
+    left: 37.5%;
     text-align: center;
 }
 #userGuesses{
@@ -64,4 +64,26 @@ body{
     position: absolute;
     top: 10%;
     left: 35%;
+}
+#image{
+    width: 10%;
+    height: 20%;
+    position: absolute;
+    left: 12%;
+    bottom: 48%;
+    border-color: red;
+    border-radius: 10px;
+    border-width: 5px;
+    border-style: groove;
+}
+#image2{
+    width: 10%;
+    height: 20%;
+    position: absolute;
+    left: 78%;
+    bottom: 48%;
+    border-color: red;
+    border-radius: 10px;
+    border-width: 5px;
+    border-style: groove;
 }
